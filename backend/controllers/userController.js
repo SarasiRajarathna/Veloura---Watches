@@ -3,75 +3,94 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export async function createUser(req,res){
-try{
-    
-    const passwordHash = await bcrypt.hashSync(req.body.password, 10); //Hashiing the password with bcrypt
+export async function createUser(req, res) {
+    try {
+        // Hash the password
+        const passwordHash = bcrypt.hashSync(req.body.password, 10);
 
-    const newUser = new User({
-        email: req.body.email,
-        firstName: req.body.firstname,
-        lastName: req.body.lastname,
-        password: passwordHash
-    })
-   
-    await newUser.save()
-    res.json({
-        message: "User created successfully"
-    })
+        const newUser = new User({
+            email: req.body.email,
+            firstName: req.body.firstname,
+            lastName: req.body.lastname,
+            password: passwordHash
+        });
 
-}catch(error){
-    res.json({
-        message: "Error creating user"
-    })
+        await newUser.save();
+
+        res.json({
+            message: "User created successfully"
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Error creating user"
+        });
+    }
 }
-}
 
-export async function loginUser(req,res){
-    try{
-        const user = await user.findOne({
-            email : req.body.email
-        })
-        console.log(user)
-        if(user == null){
-            res.status(404).json({
+
+export async function loginUser(req, res) {
+    try {
+        // Find user by email
+        const user = await User.findOne({
+            email: req.body.email
+        });
+
+        console.log(user);
+
+        // Check whether user exists
+        if (user == null) {
+            return res.status(404).json({
                 message: "User Not Found"
-            })
-
-        }else
-            const isPasswordValid = await bcrypt.compareSync(req.body.password, user.password); //Comparing the password with the hashing password stored in the database.
-            if(isPasswordValid){  // If the password is valid, then we can send a response to the client that the logic is successful. Untill this step the authentication part is done. After this step we can generate a token for the user and send it to the client. 
-            //res.json({
-                //message: "Login Successfull"
-            //})
-
-            if(isPasswordValid){
-                const payLoad = {
-                    email: user.email,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    isAdmin: user.isAdmin,
-                    isBlocked: user.IsBlocked,
-                    isEmailVerified: user.IsEmailVerified,
-                    image: user.image
-                }
-                const token = jwt.sign(payload, "secretKey",{
-                    expiresIn : "48h"
-                })
-                res.json({
-                    token: token,
-                })
-            }
-
-            }else{
-            res.status(401).json({
-                message: "Invalid Password"
-            })
+            });
         }
 
-    }catch(err){
-    res.status(500).json({
-        message: "Invalid Login"
-    })
-   }
+        // Compare entered password with hashed password
+        const isPasswordValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        );
+
+        // Check password
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                message: "Invalid Password"
+            });
+        }
+
+        // Create payload
+        const payload = {
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            isAdmin: user.isAdmin,
+            isBlocked: user.isBlocked,
+            isEmailVerified: user.isEmailVerified,
+            image: user.image
+        };
+
+        // Generate JWT token
+        const token = jwt.sign(
+            payload,
+            "secretKey",
+            {
+                expiresIn: "48h"
+            }
+        );
+
+        // Send token to client
+        res.json({
+            message: "Login Successful",
+            token: token
+        });
+
+    } catch (err) {
+        console.error(err);
+
+        res.status(500).json({
+            message: "Invalid Login"
+        });
+    }
 }
