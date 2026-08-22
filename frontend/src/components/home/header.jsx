@@ -1,0 +1,60 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+export default function Header() {
+  return (
+    <header className="relative z-50 flex h-20 items-center justify-between border-b border-white/10 bg-[#080808] px-6 lg:px-10">
+      
+      <Link
+        to="/"
+        className="flex items-center"
+      >
+        <img
+          src="/logo.png"
+          alt="Veloura Logo"
+          className="h-[60px]"
+        />
+      </Link>
+
+      <div className="hidden lg:flex items-center gap-10">
+        <Link
+          to="/"
+          className="text-amber-400 text-md font-semibold"
+        >
+          Home
+        </Link>
+
+        <Link
+          to="/about-us"
+          className="text-amber-400 text-md font-semibold"
+        >
+          About Us
+        </Link>
+
+        <Link
+          to="/contact-us"
+          className="text-amber-400 text-md font-semibold"
+        >
+          Contact Us
+        </Link>
+      </div>
+
+      <div className="flex gap-5">
+        <Link
+          to="/login"
+          className="text-amber-400 text-md font-semibold"
+        >
+          Login
+        </Link>
+
+        <Link
+          to="/register"
+          className="text-amber-400 text-md font-semibold"
+        >
+          Register
+        </Link>
+      </div>
+
+    </header>
+  );
+}
