@@ -1,4 +1,7 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load all environment variables(env) to backend from .env file
 
 export default function authenticateUser(req, res, next){
     
@@ -9,7 +12,7 @@ export default function authenticateUser(req, res, next){
           const token = header.replace("Bearer", " ")
           console.log(token)
         
-          jwt.verify(token, "secretKey",
+          jwt.verify(token, process.env.JWT_SECRET,
             (error,decoded)=>{
                 console.log(decoded)
                 

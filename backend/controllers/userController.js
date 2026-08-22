@@ -2,6 +2,9 @@ import { response } from "express";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load all environment variables(env) to backend from .env file
 
 export async function createUser(req, res) {
     try {
@@ -72,9 +75,7 @@ export async function loginUser(req, res) {
         };
 
         // Generate JWT token
-        const token = jwt.sign(
-            payload,
-            "secretKey",
+        const token = jwt.sign(payload, process.env.JWT_SECRET,
             {
                 expiresIn: "48h"
             }
@@ -83,7 +84,8 @@ export async function loginUser(req, res) {
         // Send token to client
         res.json({
             message: "Login Successful",
-            token: token
+            token: token,
+            isAdmin: user.isAdmin
         });
 
     } catch (err) {

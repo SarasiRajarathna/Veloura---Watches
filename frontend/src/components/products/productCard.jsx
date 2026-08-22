@@ -20,3 +20,5 @@ function productCard() {
 }
 
 export default productCard
+
+
