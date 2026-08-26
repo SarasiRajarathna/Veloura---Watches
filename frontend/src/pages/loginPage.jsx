@@ -26,7 +26,7 @@ export default function LoginPage() {
         }).then((response)=>{
 
             console.log(response.data);
-            localStorage.setItem("token" , response.data.token);
+            localStorage.setItem("token" , response.data.token); //save the token in local storage of the browser
             //alert("Login successful!");
             toast.success("Login successful!");
             if(response.data.isAdmin){
