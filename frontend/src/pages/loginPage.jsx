@@ -37,7 +37,7 @@ export default function LoginPage() {
             }else{
                 //redirect to homepage
                 //window.location.href = "/"
-                navigate("/")
+                navigate("/user")
             }
 
         }).catch((error)=>{

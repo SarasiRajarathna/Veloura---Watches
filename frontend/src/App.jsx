@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/admin/*" element={<AdminPage />} />
+        <Route path="/user/*" element={<CustomerPage />} />
       </Routes>
     </div>
   );
