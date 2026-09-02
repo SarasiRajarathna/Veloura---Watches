@@ -5,10 +5,10 @@ import { Route, Routes } from "react-router-dom"
 /* ─── Placeholder page components ────────────────────────────────── */
 function CustomerDashboard() {
   const stats = [
-    { label: "Total Products",   value: "—", sub: "Across all categories" },
-    { label: "Total Orders",     value: "—", sub: "All time" },
-    { label: "Total Customers",  value: "—", sub: "Registered accounts" },
-    { label: "Pending Orders",   value: "—", sub: "Awaiting fulfilment" },
+    { label: "My Orders",       value: "—", sub: "All time" },
+    { label: "Wishlist Items",  value: "—", sub: "Saved products" },
+    { label: "Pending Orders",  value: "—", sub: "Awaiting delivery" },
+    { label: "Loyalty Points",  value: "—", sub: "Redeemable balance" },
   ]
 
   return (
@@ -17,9 +17,9 @@ function CustomerDashboard() {
       {/* Page heading */}
       <div className="mb-8 border-b border-white/8 pb-6">
         <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">OVERVIEW</p>
-        <h1 className="font-serif text-3xl text-white">Dashboard</h1>
+        <h1 className="font-serif text-3xl text-white">My Dashboard</h1>
         <p className="mt-2 text-xs text-gray-500">
-          Welcome back, Administrator. Here is a summary of your store.
+          Welcome back. Here is a summary of your account.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ function CustomerDashboard() {
           Recent Activity
         </p>
         <p className="text-xs text-gray-600 italic">
-          No data to display yet. Connect your API to populate this section.
+          No data to display yet.
         </p>
       </div>
 
@@ -56,34 +56,34 @@ function CustomerDashboard() {
   )
 }
 
-function AdminOrdersPage() {
-  return <h1>Orders Dashboard</h1>
+function CustomerOrdersPage() {
+  return <h1>My Orders</h1>
 }
 
-function AdminProductsPage() {
-  return <h1>Products Dashboard</h1>
+function CustomerWishlistPage() {
+  return <h1>My Wishlist</h1>
 }
 
-function AdminAddProductPage() {
-  return <h1>Add Product</h1>
+function CustomerProfilePage() {
+  return <h1>My Profile</h1>
 }
 
-function AdminEditProductPage() {
-  return <h1>Edit Product</h1>
+function CustomerSettingsPage() {
+  return <h1>Settings</h1>
 }
 
-export default function AdminPage() {
+export default function CustomerPage() {
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#0b0b0b]">
 
       {/* Fixed top header */}
-      <AdminHeader />
+      <CustomerHeader />
 
       {/* Body: sidebar + content */}
       <div className="flex flex-1 overflow-hidden">
 
         {/* Sidebar — single instance; handles desktop fixed column + mobile overlay internally */}
-        <AdminSidebar />
+        <CustomerSidebar />
 
         {/* Desktop spacer — reserves the sidebar column so main content doesn't underlap */}
         <div className="hidden w-[240px] shrink-0 lg:block" />
@@ -95,30 +95,30 @@ export default function AdminPage() {
           <div className="h-px w-full bg-gradient-to-r from-[#c9a96e]/20 via-[#c9a96e]/5 to-transparent" />
 
           <Routes>
-            <Route path="/"             element={<AdminDashboard />} />
-            <Route path="/orders"       element={<AdminOrdersPage />} />
-            <Route path="/products"     element={<AdminProductsPage />} />
-            <Route path="/add-product"  element={<AdminAddProductPage />} />
-            <Route path="/edit-product" element={<AdminEditProductPage />} />
-            <Route path="/users"        element={
+            <Route path="/"             element={<CustomerDashboard />} />
+            <Route path="/my-orders"    element={<CustomerOrdersPage />} />
+            <Route path="/whishlist"    element={<CustomerWishlistPage />} />
+            <Route path="/profile"      element={<CustomerProfilePage />} />
+            <Route path="/settings"     element={<CustomerSettingsPage />} />
+            <Route path="/membership"   element={
               <div className="p-8 lg:p-10">
                 <div className="mb-8 border-b border-white/8 pb-6">
-                  <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">SYSTEM</p>
-                  <h1 className="font-serif text-3xl text-white">Admin Users</h1>
+                  <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">LOYALTY</p>
+                  <h1 className="font-serif text-3xl text-white">Membership</h1>
                 </div>
                 <div className="border border-white/8 bg-white/3 p-6">
-                  <p className="text-xs text-gray-600 italic">Users will appear here once connected.</p>
+                  <p className="text-xs text-gray-600 italic">Membership info will appear here once connected.</p>
                 </div>
               </div>
             } />
-            <Route path="/reviews"      element={
+            <Route path="/help"         element={
               <div className="p-8 lg:p-10">
                 <div className="mb-8 border-b border-white/8 pb-6">
-                  <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">SALES</p>
-                  <h1 className="font-serif text-3xl text-white">Reviews</h1>
+                  <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">SUPPORT</p>
+                  <h1 className="font-serif text-3xl text-white">Help Center</h1>
                 </div>
                 <div className="border border-white/8 bg-white/3 p-6">
-                  <p className="text-xs text-gray-600 italic">Reviews will appear here once connected.</p>
+                  <p className="text-xs text-gray-600 italic">Help articles will appear here once connected.</p>
                 </div>
               </div>
             } />

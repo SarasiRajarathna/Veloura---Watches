@@ -3,7 +3,7 @@ import { NavLink, useMatch, Link } from "react-router-dom";
 import {
   LayoutDashboard, Package, Tags, Boxes, FolderOpen, ShoppingCart,
   Users, Star, Home, Tag, Image, ShieldCheck, Settings, Activity,
-  LogOut, ChevronDown, Menu, X,
+  LogOut, ChevronDown, Menu, X, Crown,
 } from "lucide-react";
 
 /* ─── Individual nav item ────────────────────────────────────────── */

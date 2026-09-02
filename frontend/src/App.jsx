@@ -4,6 +4,7 @@ import LoginPage from "./pages/loginPage";
 import { Toaster } from "react-hot-toast";
 import SignUpPage from "./pages/signUpPage";
 import AdminPage from "./pages/adminPage";
+import CustomerPage from "./pages/userPage";
 
 export default function App() {
   return (
