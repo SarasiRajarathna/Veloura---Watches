@@ -1,5 +1,6 @@
 import AdminHeader from '../components/admin/adminHeader'
 import AdminSidebar from '../components/admin/adminSidebar'
+import AdminAddProductPage from '../components/admin/adminAddProductsPage' 
 import { Route, Routes } from "react-router-dom"
 
 /* ─── Placeholder page components ────────────────────────────────── */
@@ -64,7 +65,7 @@ function AdminProductsPage() {
   return <h1>Products Dashboard</h1>
 }
 
-function AdminAddProductPage() {
+function AdminAddProductsPage() {
   return <h1>Add Product</h1>
 }
 
@@ -98,7 +99,7 @@ export default function AdminPage() {
             <Route path="/"             element={<AdminDashboard />} />
             <Route path="/orders"       element={<AdminOrdersPage />} />
             <Route path="/products"     element={<AdminProductsPage />} />
-            <Route path="/add-product"  element={<AdminAddProductPage />} />
+            <Route path="/add-product"  element={<AdminAddProductsPage />} />
             <Route path="/edit-product" element={<AdminEditProductPage />} />
             <Route path="/users"        element={
               <div className="p-8 lg:p-10">
