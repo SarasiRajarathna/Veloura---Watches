@@ -1,6 +1,7 @@
 import AdminHeader from '../components/admin/adminHeader'
 import AdminSidebar from '../components/admin/adminSidebar'
 import AdminAddProductPage from '../components/admin/adminAddProductsPage' 
+import AdminProductsPage from '../components/admin/adminProductsPage'
 import { Route, Routes } from "react-router-dom"
 
 /* ─── Placeholder page components ────────────────────────────────── */
@@ -59,10 +60,6 @@ function AdminDashboard() {
 
 function AdminOrdersPage() {
   return <h1>Orders Dashboard</h1>
-}
-
-function AdminProductsPage() {
-  return <h1>Products Dashboard</h1>
 }
 
 function AdminAddProductsPage() {
