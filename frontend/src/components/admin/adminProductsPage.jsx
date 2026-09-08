@@ -118,7 +118,7 @@ export default function AdminProductsPage() {
                                                             item.isAvailable
                                                                 ? "bg-green-50 text-green-600"
                                                                 : "bg-red-50 text-red-600"
-                                                        }`}
+                                                            }`}
                                                     >
                                                         {item.isAvailable ? "Available" : "Unavailable"}
                                                     </span>
