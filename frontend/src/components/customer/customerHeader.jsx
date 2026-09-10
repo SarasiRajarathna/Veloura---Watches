@@ -11,7 +11,7 @@ export default function CustomerHeader() {
         <img
           src="/logo.png"
           alt="Veloura Logo"
-          className="h-[52px] w-auto"
+          className="h-[60px] w-auto"
         />
       </Link>
 

@@ -36,132 +36,154 @@ export default function AdminProductsPage() {
     );
 
     return (
-        <div className="w-full h-full overflow-y-scroll bg-gray-50 p-6 rounded-lg">
-            <div className="sticky top-0 z-10 w-full min-h-[90px] rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-between px-6 mb-6">
+        <div className="w-full min-h-full bg-[#0d0d0d] p-8 lg:p-10">
+
+            {/* Page heading */}
+            <div className="mb-8 border-b border-white/8 pb-6 flex items-end justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-800">Products</h1>
-                    <p className="text-sm text-gray-500 mt-1">Manage your store inventory with ease</p>
+                    <p className="mb-1.5 text-[10px] tracking-[0.3em] text-[#c9a96e]">STORE</p>
+                    <h1 className="font-serif text-3xl text-white">Products</h1>
+                    <p className="mt-2 text-xs text-gray-500">
+                        Manage your store inventory with ease.
+                    </p>
                 </div>
+                <Link
+                    to="/admin/add-product"
+                    className="flex items-center gap-2 border border-[#c9a96e]/30 bg-[#c9a96e]/8 px-4 py-2.5 text-[11px] tracking-[0.15em] text-[#c9a96e] transition-all duration-200 hover:bg-[#c9a96e]/15 hover:border-[#c9a96e]/50"
+                >
+                    <FaPlus size={11} />
+                    ADD PRODUCT
+                </Link>
             </div>
 
+            {/* Subtle gold rule */}
+            <div className="mb-6 h-px w-full bg-gradient-to-r from-[#c9a96e]/20 via-[#c9a96e]/5 to-transparent" />
+
+            {/* Content */}
             {
-                isProductsAreLoaded ?
-                    <div className="w-full overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
-                        <table className="w-full min-w-[1200px] text-sm text-gray-700">
-                            <thead className="bg-gray-100 text-gray-600">
-                                <tr>
-                                    <th className="text-left font-semibold px-5 py-4">Image</th>
-                                    <th className="text-left font-semibold px-5 py-4">Product ID</th>
-                                    <th className="text-left font-semibold px-5 py-4">Name</th>
-                                    <th className="text-left font-semibold px-5 py-4">Price</th>
-                                    <th className="text-left font-semibold px-5 py-4">Labelled Price</th>
-                                    <th className="text-left font-semibold px-5 py-4">Brand</th>
-                                    <th className="text-left font-semibold px-5 py-4">Model</th>
-                                    <th className="text-left font-semibold px-5 py-4">Category</th>
-                                    <th className="text-left font-semibold px-5 py-4">Availability</th>
-                                    <th className="text-left font-semibold px-5 py-4">Stock</th>
-                                    <th className="text-left font-semibold px-5 py-4">Actions</th>
+                isProductsAreLoaded ? (
+                    <div className="w-full overflow-x-auto border border-white/8 bg-[#0b0b0b]">
+                        <table className="w-full min-w-[1100px] text-xs text-gray-400">
+
+                            {/* Head */}
+                            <thead>
+                                <tr className="border-b border-white/8 bg-white/3">
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Image</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Product ID</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Name</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Price</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Labelled Price</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Brand</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Model</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Category</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Availability</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Stock</th>
+                                    <th className="px-5 py-4 text-left font-medium tracking-[0.18em] text-[9px] text-gray-600 uppercase">Actions</th>
                                 </tr>
                             </thead>
 
+                            {/* Body */}
                             <tbody>
                                 {
-                                    products.map((item) => {
-                                        return (
-                                            <tr
-                                                key={item.productId}
-                                                className="border-t border-gray-200 hover:bg-gray-50 transition-colors duration-200"
-                                            >
-                                                <td className="px-5 py-4">
+                                    products.map((item) => (
+                                        <tr
+                                            key={item.productId}
+                                            className="border-b border-white/5 transition-colors duration-150 hover:bg-white/3"
+                                        >
+                                            {/* Image */}
+                                            <td className="px-5 py-4">
+                                                <div className="h-14 w-14 border border-white/10 bg-white/3 overflow-hidden">
                                                     <img
                                                         src={item.images[0]}
                                                         alt={item.name}
-                                                        className="w-16 h-16 object-cover rounded-xl border border-gray-200 bg-white"
+                                                        className="h-full w-full object-cover"
                                                     />
-                                                </td>
+                                                </div>
+                                            </td>
 
-                                                <td className="px-5 py-4">
-                                                    <span className="inline-block rounded-md bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-                                                        {item.productId}
-                                                    </span>
-                                                </td>
+                                            {/* Product ID */}
+                                            <td className="px-5 py-4">
+                                                <span className="inline-block border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-mono text-gray-500">
+                                                    {item.productId}
+                                                </span>
+                                            </td>
 
-                                                <td className="px-5 py-4">
-                                                    <div className="font-semibold text-gray-800">{item.name}</div>
-                                                </td>
+                                            {/* Name */}
+                                            <td className="px-5 py-4">
+                                                <span className="text-xs font-medium text-white">{item.name}</span>
+                                            </td>
 
-                                                <td className="px-5 py-4 font-semibold text-green-600">
+                                            {/* Price */}
+                                            <td className="px-5 py-4">
+                                                <span className="text-xs font-semibold text-[#c9a96e]">
                                                     Rs. {item.price}
-                                                </td>
+                                                </span>
+                                            </td>
 
-                                                <td className="px-5 py-4 text-gray-500">
-                                                    Rs. {item.labelledPrice}
-                                                </td>
+                                            {/* Labelled Price */}
+                                            <td className="px-5 py-4 text-gray-600 line-through text-[11px]">
+                                                Rs. {item.labelledPrice}
+                                            </td>
 
-                                                <td className="px-5 py-4 text-gray-700">
-                                                    {item.brand || "-"}
-                                                </td>
+                                            {/* Brand */}
+                                            <td className="px-5 py-4 text-gray-400">{item.brand || "—"}</td>
 
-                                                <td className="px-5 py-4 text-gray-600">
-                                                    {item.model || "-"}
-                                                </td>
+                                            {/* Model */}
+                                            <td className="px-5 py-4 text-gray-500">{item.model || "—"}</td>
 
-                                                <td className="px-5 py-4">
-                                                    <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-xs font-medium">
-                                                        {item.category}
-                                                    </span>
-                                                </td>
+                                            {/* Category */}
+                                            <td className="px-5 py-4">
+                                                <span className="inline-block border border-[#c9a96e]/20 bg-[#c9a96e]/8 px-2.5 py-1 text-[10px] tracking-[0.1em] text-[#c9a96e]">
+                                                    {item.category}
+                                                </span>
+                                            </td>
 
-                                                <td className="px-5 py-4">
-                                                    <span
-                                                        className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
-                                                            item.isAvailable
-                                                                ? "bg-green-50 text-green-600"
-                                                                : "bg-red-50 text-red-600"
-                                                            }`}
+                                            {/* Availability */}
+                                            <td className="px-5 py-4">
+                                                <span
+                                                    className={`inline-block px-2.5 py-1 text-[10px] tracking-[0.1em] border ${
+                                                        item.isAvailable
+                                                            ? "border-emerald-500/20 bg-emerald-500/8 text-emerald-400"
+                                                            : "border-red-500/20 bg-red-500/8 text-red-400"
+                                                    }`}
+                                                >
+                                                    {item.isAvailable ? "Available" : "Unavailable"}
+                                                </span>
+                                            </td>
+
+                                            {/* Stock */}
+                                            <td className="px-5 py-4">
+                                                <span className="text-xs font-semibold text-white">{item.stock}</span>
+                                            </td>
+
+                                            {/* Actions */}
+                                            <td className="px-5 py-4">
+                                                <div className="flex items-center gap-2">
+                                                    <ProductDeleteModal
+                                                        product={item}
+                                                        refresh={() => {
+                                                            setIsProductsAreLoaded(false);
+                                                        }}
+                                                    />
+                                                    <Link
+                                                        to="/admin/edit-product"
+                                                        state={item}
+                                                        className="flex h-8 w-8 items-center justify-center border border-white/10 bg-white/3 text-gray-400 transition-all duration-200 hover:border-[#c9a96e]/30 hover:bg-[#c9a96e]/8 hover:text-[#c9a96e]"
                                                     >
-                                                        {item.isAvailable ? "Available" : "Unavailable"}
-                                                    </span>
-                                                </td>
-
-                                                <td className="px-5 py-4">
-                                                    <span className="font-semibold text-gray-800">{item.stock}</span>
-                                                </td>
-
-                                                <td className="px-5 py-4">
-                                                    <div className="flex items-center gap-3">
-                                                        <ProductDeleteModal
-                                                            product={item}
-                                                            refresh={() => {
-                                                                setIsProductsAreLoaded(false);
-                                                            }}
-                                                        />
-                                                        <Link
-                                                            to="/admin/edit-product"
-                                                            state={item}
-                                                            className="w-9 h-9 rounded-lg border border-blue-100 bg-blue-50 flex items-center justify-center hover:bg-blue-100 transition-colors"
-                                                        >
-                                                            <BiEdit className="text-xl text-blue-600 cursor-pointer" />
-                                                        </Link>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })
+                                                        <BiEdit className="text-base" />
+                                                    </Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
                                 }
                             </tbody>
                         </table>
                     </div>
-                    :
+                ) : (
                     <LoadingAnimation />
+                )
             }
-
-            <Link
-                to="/admin/add-product"
-                className="fixed bottom-8 right-8 w-[64px] h-[64px] bg-accent flex justify-center items-center text-white text-3xl rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200"
-            >
-                <FaPlus />
-            </Link>
         </div>
     );
 }
