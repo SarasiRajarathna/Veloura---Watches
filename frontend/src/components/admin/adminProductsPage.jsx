@@ -184,6 +184,21 @@ export default function AdminProductsPage() {
                     <LoadingAnimation />
                 )
             }
+
+            {/* ── Floating Luxury "Add Timepiece" Button on Bottom Right Corner ── */}
+            <Link
+                to="/admin/add-product"
+                aria-label="Add new timepiece"
+                title="Add New Timepiece"
+                className="group fixed bottom-8 right-8 z-40 flex items-center gap-3 overflow-hidden rounded-full border border-[#c9a96e]/60 bg-[#0c0c0c]/95 p-3.5 text-[#c9a96e] shadow-[0_8px_32px_rgba(0,0,0,0.85),0_0_20px_rgba(201,169,110,0.25)] backdrop-blur-md transition-all duration-300 hover:border-[#c9a96e] hover:bg-[#c9a96e] hover:text-black hover:shadow-[0_12px_40px_rgba(201,169,110,0.55)] hover:scale-105 active:scale-95"
+            >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c9a96e]/15 text-[#c9a96e] transition-all duration-500 group-hover:rotate-90 group-hover:bg-black group-hover:text-[#c9a96e]">
+                    <FaPlus size={13} />
+                </span>
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-semibold tracking-[0.22em] uppercase transition-all duration-300 ease-out group-hover:max-w-xs group-hover:pr-3">
+                    Add Timepiece
+                </span>
+            </Link>
         </div>
     );
 }

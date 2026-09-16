@@ -62,10 +62,6 @@ function AdminOrdersPage() {
   return <h1>Orders Dashboard</h1>
 }
 
-function AdminAddProductsPage() {
-  return <h1>Add Product</h1>
-}
-
 function AdminEditProductPage() {
   return <h1>Edit Product</h1>
 }
@@ -96,7 +92,8 @@ export default function AdminPage() {
             <Route path="/"             element={<AdminDashboard />} />
             <Route path="/orders"       element={<AdminOrdersPage />} />
             <Route path="/products"     element={<AdminProductsPage />} />
-            <Route path="/add-product"  element={<AdminAddProductsPage />} />
+            <Route path="/add-product"  element={<AdminAddProductPage />} />
+            <Route path="/add-products" element={<AdminAddProductPage />} />
             <Route path="/edit-product" element={<AdminEditProductPage />} />
             <Route path="/users"        element={
               <div className="p-8 lg:p-10">

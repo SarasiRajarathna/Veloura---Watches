@@ -13,8 +13,8 @@ export async function createUser(req, res) {
 
         const newUser = new User({
             email: req.body.email,
-            firstName: req.body.firstname,
-            lastName: req.body.lastname,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             password: passwordHash
         });
 
@@ -93,6 +93,42 @@ export async function loginUser(req, res) {
 
         res.status(500).json({
             message: "Invalid Login"
+        });
+    }
+}
+
+// Get current authenticated user info
+export async function getCurrentUser(req, res) {
+    try {
+        if (!req.user) {
+            return res.status(401).json({
+                message: "Not authenticated"
+            });
+        }
+
+        res.json({
+            success: true,
+            user: req.user
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Error fetching user"
+        });
+    }
+}
+
+// Logout endpoint (client-side token removal)
+export async function logoutUser(req, res) {
+    try {
+        res.json({
+            success: true,
+            message: "Logged out successfully"
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Logout error"
         });
     }
 }
